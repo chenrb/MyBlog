@@ -1,0 +1,133 @@
+html, body, address, blockquote, div, dl, form, h1, h2, h3, h4, h5, h6, ol, p, pre, table, ul,
+dd, dt, li, tbody, td, tfoot, th, thead, tr, button, del, ins, map, object,
+a, abbr, acronym, b, bdo, big, br, cite, code, dfn, em, i, img, kbd, q, samp, small, span,
+strong, tt, var, legend, fieldset,
+article, aside, audio, canvas, caption, details, figcaption, figure, footer,
+header, hgroup, iframe, label, mark, menu, nav, section, summary, time, video {
+    margin:0;
+    padding:0;
+    border:0;
+    outline:0;
+    vertical-align:baseline;
+    background:transparent;
+}
+body {
+    background: url(../image/rodion-kutsaev-951.jpg) fixed;
+    background-size: cover;
+    font: .93em/1.5 Verdana, "Helvetica Neue", Helvetica, Arial;
+}
+
+.header-wrapper {
+    background: rgba(0, 0, 0, .2);
+}
+.page-header a{
+    color: #fff;
+}
+.page-header a:hover {
+    color: #53D4FF;
+    text-decoration: none;
+}
+
+/* page-header */
+#logo {
+    font-weight: bold;
+    line-height: 1em;
+    font-size: 3em;
+    margin: 0;
+    letter-spacing: -.05em;
+    text-shadow: 0 1px 0 #888;
+}
+.page-header .description {
+    font-style: italic;
+    font-size: 1.4em;
+    line-height: 1em;
+    margin-top: 5px;
+}
+.page-header {
+    margin-bottom: 10px;
+    border-bottom-width: 0;
+    padding-bottom: 0;
+    margin-top: 30px;
+}
+.social {
+    font-size: 3em;
+}
+/* end page-header */
+
+/* search form */
+#searchform {
+    margin-right: 0;
+}
+/* end search */
+
+/* nav */
+/*nav {*/
+    /*margin-bottom: 15px;*/
+/*}*/
+ul li {
+    font-size: 1.7em;
+}
+/* end nav */
+
+/* article */
+.panel-default.left {
+    margin-top: 10px;
+    margin-bottom: 10px;
+    background: rgba(255, 255, 255, .7);
+}
+.post-date {
+    margin: 2px 0 2px 0;
+}
+.post-date span {
+    font-style: italic;
+    font-size: 1.4em;
+    line-height: 1em;
+    margin-right: 15px;
+}
+.post-date a {
+    color: #337ab7;
+}
+.post-date a:hover {
+    color: #53D4FF;
+    text-decoration: none;
+}
+
+.post-title {
+    font-weight: bold;
+    line-height: 1.5em;
+    font-size: 3em;
+    margin: 0;
+}
+.post-title a {
+    color: 	#333333;
+}
+.post-title a:hover {
+    color: #337ab7;
+    text-decoration: none;
+}
+/* end article*/
+
+/* right-box */
+.panel-default.right {
+    margin-top: 10px;
+    color: white;
+    background: rgba(0, 0, 0, 0.7);
+}
+.panel-default.right h4 {
+    margin: 20px 0 6px 0;
+}
+.panel-default.right li {
+    list-style-type: none;
+    display: block;
+    margin: 0 5px 0 15px;
+    word-break: break-all;
+    word-wrap: break-word;
+    font-size: 1.5em;
+}
+.panel-default.right a {
+    color: #aaaaaa;
+}
+.panel-default.right a:hover {
+    color: #ffffff;
+}
+/* end right-box */
