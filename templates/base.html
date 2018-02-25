@@ -1,18 +1,26 @@
 <!DOCTYPE html>
 {% load staticfiles %}
+{% load blog_tags %}
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Pluto</title>
-    <meta name="viewport" content="width=800">
+    <title>
+        {% block title %}
+        {% endblock %}
+    </title>
+    <meta name="viewport" content="width=400">
     <meta name="referrer" content="unsafe-url">
+
+    <!-- css -->
+    <link rel="shortcut icon" href="{% static 'image/p.ico' %}"/>
     <link href="https://use.fontawesome.com/releases/v5.0.6/css/all.css" rel="stylesheet">
-    <!-- 最新版本的 Bootstrap 核心 CSS 文件 -->
-    <link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+    <link rel="stylesheet" href="{% static 'css/github.css' %}">
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <!-- js -->
 </head>
 <body>
-<div class="header-wrapper">
+<div class="header-wrapper" id="top">
     <div class="container">
         <div class="page-header">
             <div class="row">
@@ -23,8 +31,7 @@
                 <div class="col-md-3">
                     <div class="social">
                         <a href="https://github.com/JohnChan0047" target="_blank"><i class="fab fa-github"></i></a>
-{#                        <a href="/"><i class="fas fa-envelope"></i></a>#}
-{#                        <a href="/" target="_blank"><i class="fas fa-rss"></i></a>#}
+                        <a href="/" target="_blank"><i class="fas fa-rss"></i></a>
                     </div>
                 </div>
             </div>
@@ -33,54 +40,75 @@
             <div class="container">
                 <div class="navbar-collapse collapse in" aria-expanded="true">
                     <ul class="nav navbar-nav">
-                        <li class="active"><a href="#">首页</a></li>
-                        <li><a href="#about">分类</a></li>
-                        <li><a href="#contact">归档</a></li>
-                        <li><a href="#contact">关于</a></li>
+                        <li {% ifequal request.path '/' %}class="active"{% endifequal %}>
+                            <a href="{% url 'index' %}">首页</a>
+                        </li>
+                        <li {% ifequal request.path|slice:'9' '/category' %}class="active"{% endifequal %}>
+                            <a href="{% url 'category' %}">分类</a>
+                        </li>
+                        <li {% ifequal request.path|slice:'9' '/archives' %}class="active"{% endifequal %}>
+                            <a href="{% url 'archives' %}">归档</a>
+                        </li>
+                        <li {% ifequal request.path|slice:'6' '/about' %}class="active"{% endifequal %}>
+                            <a href="{% url 'about' %}">关于</a>
+                        </li>
                     </ul>
-                    <form class="navbar-form navbar-right" id="searchform">
-                        <input type="text" placeholder="找找有啥好东东…" value="" name="keywords" id="keywords" class="form-control">
+                    <form class="navbar-form navbar-right" id="searchform" action="{% url 'search' %}" method="get">
+                        <input type="text" placeholder="看看这里有什么…" value="" name="keywords" id="keywords"
+                               class="form-control">
                         <button type="submit" class="btn btn-default">搜索</button>
+                        {% csrf_token %}
                     </form>
                 </div>
             </div>
         </nav>
     </div>
 </div>
-<div class="content">
+<div class="content" style="min-height: 600px">
     <div class="container">
         <div class="row">
-{#            <div class="col-md-9">#}
-{##}
-{#                <div class="panel panel-default left">#}
-{#                    <article class="panel-body">#}
-{#                        <h2 class="post-title"><a href="/">Python 的多进程编程</a></h2>#}
-{#                        <p class="post-date">#}
-{#                            <span>时间：2017 9 9 06:35</span>#}
-{#                            <span>分类：<a href="/category/Python">Python</a></span>#}
-{#                        </p>#}
-{#                        <section class="article-content"></section>#}
-{#                    </article>#}
-{#                </div>#}
-{#            </div>#}
-{#            <div class="col-md-3">#}
-{#                <div class="panel panel-default right">#}
-{#                    <div class="panel-body">#}
-{#                        <div class="random-article">#}
-{#                            <h4>随机文章</h4>#}
-{#                            <ul>#}
-{#                            </ul>#}
-{#                        </div>#}
-{#                        <div class="hot-article">#}
-{#                            <h4>热门文章</h4>#}
-{#                            <ul>#}
-{#                            </ul>#}
-{#                        </div>#}
-{#                    </div>#}
-{#                </div>#}
-{#            </div>#}
+            <div class="col-md-9">
+                {% block content_left %}
+                {% endblock %}
+            </div>
+
+            <div class="col-md-3">
+                <div class="panel panel-default right">
+                    <div class="panel-body">
+                        <div class="random-article">
+                            <h4>随机文章</h4>
+                            {% get_rand_articles as rand_articles %}
+                            <ul style="padding-left: 10px">
+                                {% for article in rand_articles %}
+                                    <li>
+                                        <a href="/">{{ article.title }}</a>
+                                    </li>
+                                {% endfor %}
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 </div>
+<div class="container" id="hr">
+    <hr>
+    <div class="back-to-top">
+        <a href="#top"><i class="fas fa-chevron-circle-up"></i></a>
+    </div>
+</div>
+<footer class="blog-footer">
+    <p>© 2018 Pluto <a href="http://www.miitbeian.gov.cn" target="_blank">粤ICP备18018330号</a></p>
+    <p>Photo by <a href="https://unsplash.com/photos/Q-wPqMx3X1I" target="_blank">Sora Sagano on Unsplash</a>
+    </p>
+    <p>
+        Hosted on
+        <a href="https://promotion.aliyun.com/ntms/act/ambassador/sharetouser.html?userCode=0kgvco2c&utm_source=0kgvco2c"
+           target="_blank">aliyun.</a>
+        Social Icons by
+        <a href="https://fontawesome.com/" target="_blank">Font-Awesome</a>
+    </p>
+</footer>
 </body>
 </html>

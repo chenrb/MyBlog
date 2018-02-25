@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+{% load blog_tags %}
+{% block title %}
+    Pluto's Blog-关于
+{% endblock %}
+{% block content_left %}
+    <div class="panel panel-default left">
+        <div class="panel-body">
+            {{ about.about|safe }}
+        </div>
+    </div>
+{% endblock %}

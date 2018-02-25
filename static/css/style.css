@@ -1,18 +1,5 @@
-html, body, address, blockquote, div, dl, form, h1, h2, h3, h4, h5, h6, ol, p, pre, table, ul,
-dd, dt, li, tbody, td, tfoot, th, thead, tr, button, del, ins, map, object,
-a, abbr, acronym, b, bdo, big, br, cite, code, dfn, em, i, img, kbd, q, samp, small, span,
-strong, tt, var, legend, fieldset,
-article, aside, audio, canvas, caption, details, figcaption, figure, footer,
-header, hgroup, iframe, label, mark, menu, nav, section, summary, time, video {
-    margin:0;
-    padding:0;
-    border:0;
-    outline:0;
-    vertical-align:baseline;
-    background:transparent;
-}
 body {
-    background: url(../image/rodion-kutsaev-951.jpg) fixed;
+    background: url(../image/Photo-by-Sora-Sagano-on-Unsplash.jpg) fixed;
     background-size: cover;
     font: .93em/1.5 Verdana, "Helvetica Neue", Helvetica, Arial;
 }
@@ -35,13 +22,15 @@ body {
     font-size: 3em;
     margin: 0;
     letter-spacing: -.05em;
-    text-shadow: 0 1px 0 #888;
+    text-shadow: 0 1px 0 #777;
 }
 .page-header .description {
+    margin-bottom: 2px;
     font-style: italic;
     font-size: 1.4em;
     line-height: 1em;
     margin-top: 5px;
+    color: white;
 }
 .page-header {
     margin-bottom: 10px;
@@ -73,19 +62,20 @@ ul li {
 .panel-default.left {
     margin-top: 10px;
     margin-bottom: 10px;
-    background: rgba(255, 255, 255, .7);
+    z-index: -1;
+    background: rgba(255, 255, 255, .9);
 }
 .post-date {
     margin: 2px 0 2px 0;
 }
 .post-date span {
     font-style: italic;
-    font-size: 1.4em;
+    font-size: 1.3em;
     line-height: 1em;
     margin-right: 15px;
 }
 .post-date a {
-    color: #337ab7;
+    color: #4183C4;
 }
 .post-date a:hover {
     color: #53D4FF;
@@ -93,17 +83,23 @@ ul li {
 }
 
 .post-title {
-    font-weight: bold;
+    font-weight: 600;
     line-height: 1.5em;
     font-size: 3em;
     margin: 0;
 }
+/*.post-title a {*/
+    /*color: 	black;*/
+/*}*/
 .post-title a {
-    color: 	#333333;
+    color: #1b9dec;
 }
 .post-title a:hover {
-    color: #337ab7;
+    color: black;
     text-decoration: none;
+}
+.article-content {
+    font-size: 1.5em;
 }
 /* end article*/
 
@@ -131,3 +127,81 @@ ul li {
     color: #ffffff;
 }
 /* end right-box */
+
+/* hr */
+#hr {
+    height: 41px;
+}
+.back-to-top {
+    position: relative;
+    top: -10px;
+    float: right;
+    font-size: 4em;
+}
+.back-to-top a {
+    color: black;
+}
+/* end hr */
+
+/* footer */
+footer {
+    margin-bottom: 10px;
+    font-size: 1.5em;
+    color: black;
+}
+footer:hover {
+    color: white;
+    font-weight: 400;
+}
+footer a {
+    color: black;
+    /*text-decoration: none;*/
+}
+footer a:hover {
+    color: white;
+}
+footer p {
+    text-align: center;
+    margin:0;
+    padding:0;
+    border:0;
+    outline:0;
+    vertical-align:baseline;
+}
+/* end footer */
+
+/* 分类和归档 */
+.category-hr {
+    border-color: black;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+.category-h4,.archive-h4 {
+    margin:0;
+    padding:0;
+    border:0;
+    outline:0;
+}
+.category,.category-name {
+    color: #555555;
+    font-weight: bold;
+    line-height: 1em;
+    font-size: 3em;
+    margin: 0;
+    letter-spacing: -.05em;
+}
+.archive-li,.category-li{
+    list-style-type: none;
+    display: block;
+    word-break: break-all;
+    word-wrap: break-word;
+}
+.archive-date,.category-date {
+    letter-spacing: -.05em;
+    margin-right: 10px;
+}
+.archive-li a:hover,.category-li a:hover {
+    text-decoration: none;
+    color: black;
+}
+/* end */

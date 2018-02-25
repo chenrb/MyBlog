@@ -11,10 +11,13 @@ https://docs.djangoproject.com/en/1.11/ref/settings/
 """
 
 import os
+import sys
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
+# 把apps目录加到搜索目录之下，否则命令行运行时将找不到
+sys.path.insert(0, os.path.join(BASE_DIR, 'extra_apps'))
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/1.11/howto/deployment/checklist/
@@ -23,11 +26,12 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = 'nm7dfa6n*^rk-w^l39oad=8epi!qlxj+h0=gk_=d!o#j#td5t3'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
-ALLOWED_HOSTS = ['.chanrubao.xin']
+ALLOWED_HOSTS = []
+# ALLOWED_HOSTS = ['.chanrubao.xin']
 
-STATIC_ROOT = '/home/chenrubao/sites/mxonline/static'
+# STATIC_ROOT = '/home/chenrubao/sites/mxonline/static'
 
 
 # Application definition
@@ -39,6 +43,11 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'blog',
+    'xadmin',
+    'crispy_forms',
+    'pure_pagination',
+    'markdown',
 ]
 
 MIDDLEWARE = [
