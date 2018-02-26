@@ -18,6 +18,8 @@ from django.contrib import admin
 import xadmin
 
 from blog.views import IndexView, CategoryView, CategoryNameView, ArchivesView, AboutView, SearchView, ArticleView
+from blog.feeds import AllArticleRssFeed
+
 
 urlpatterns = [
     # url(r'^admin/', admin.site.urls),
@@ -29,4 +31,5 @@ urlpatterns = [
     url(r'^about/$', AboutView.as_view(), name='about'),
     url(r'^search/$', SearchView.as_view(), name='search'),
     url(r'^article/(?P<article_title>.*)/$', ArticleView.as_view(), name='article'),
+    url(r'^feed/$', AllArticleRssFeed(), name='feed'),
 ]
