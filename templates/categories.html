@@ -2,25 +2,25 @@
 {% load staticfiles %}
 {% load blog_tags %}
 {% block title %}
-    归档|Pluto's Blog
+    分类|Pluto's Blog
 {% endblock %}
 {% block content_left %}
     <div class="panel panel-default left">
         <div class="panel-body">
             {% get_articles_count as articles_count %}
-            <h2 class="category">归档 <span class="badge">{{ articles_count }}</span></h2>
+            <h2 class="category">分类 <span class="badge">{{ articles_count }}</span></h2>
             <hr class="category-hr">
-            <div class="row">
-                {% for year, articles in archives.items %}
+            {% for category in categories %}
+                <div class="row">
                     <div class="col-md-2">
-                        <h4 class="archive-h4">{{ year }}<span class="badge">{{ articles.count }}</span></h4>
+                        <h4 class="category-h4">{{ category.name }}<span class="badge">{{ category.get_articles.count }}</span></h4>
                     </div>
                     <div class="col-md-10">
                         <ul style="padding-left: 10px">
-                            {% for article in articles %}
-                                <li class="archive-li">
+                            {% for article in category.get_articles %}
+                                <li class="category-li">
                                     <p>
-                                        <span class="archive-date">{{ article.create_time|date:'Y-m-d' }} </span>
+                                        <span class="category-date">{{ article.create_time|date:'Y-m-d' }} </span>
                                         <span><a href="{% url 'article' article.title %}">{{ article.title }}</a></span>
                                     </p>
                                 </li>
@@ -28,8 +28,8 @@
                         </ul>
                         <hr class="category-hr">
                     </div>
-                {% endfor %}
-            </div>
+                </div>
+            {% endfor %}
         </div>
     </div>
 {% endblock %}

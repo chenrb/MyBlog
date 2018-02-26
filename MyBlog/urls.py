@@ -17,14 +17,16 @@ from django.conf.urls import url, include
 from django.contrib import admin
 import xadmin
 
-from blog.views import IndexView, CategoryView, ArchivesView, AboutView, SearchView
+from blog.views import IndexView, CategoryView, CategoryNameView, ArchivesView, AboutView, SearchView, ArticleView
 
 urlpatterns = [
     # url(r'^admin/', admin.site.urls),
     url(r'^xadmin/', xadmin.site.urls),
     url(r'^$', IndexView.as_view(), name='index'),
     url(r'^category/$', CategoryView.as_view(), name='category'),
+    url(r'^category/(?P<category_name>.*)/$', CategoryNameView.as_view(), name='category_name'),
     url(r'^archives/$', ArchivesView.as_view(), name='archives'),
     url(r'^about/$', AboutView.as_view(), name='about'),
     url(r'^search/$', SearchView.as_view(), name='search'),
+    url(r'^article/(?P<article_title>.*)/$', ArticleView.as_view(), name='article'),
 ]

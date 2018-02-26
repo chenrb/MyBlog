@@ -2,12 +2,12 @@
 {% load staticfiles %}
 {% load blog_tags %}
 {% block title %}
-    关于|Pluto's Blog
+    {{ article.title }}|Pluto's Blog
 {% endblock %}
 {% block content_left %}
     <div class="panel panel-default left">
         <div class="panel-body">
-            {{ about.about|safe }}
+            {{ article.content|safe }}
         </div>
     </div>
 {% endblock %}

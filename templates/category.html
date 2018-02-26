@@ -1,35 +1,23 @@
 {% extends 'base.html' %}
 {% load staticfiles %}
-{% load blog_tags %}
 {% block title %}
-    Pluto's Blog-分类
+    分类-{{ category.name }}|Pluto's Blog
 {% endblock %}
 {% block content_left %}
     <div class="panel panel-default left">
         <div class="panel-body">
-            {% get_articles_count as articles_count %}
-            <h2 class="category">分类 <span class="badge">{{ articles_count }}</span></h2>
+            <h2 class="category">{{ category.name }} <span class="badge">{{ category.get_articles.count }}</span></h2>
             <hr class="category-hr">
-            {% for category in categories %}
-                <div class="row">
-                    <div class="col-md-2">
-                        <h4 class="category-h4">{{ category.name }}<span class="badge">{{ category.get_articles.count }}</span></h4>
-                    </div>
-                    <div class="col-md-10">
-                        <ul>
-                            {% for article in category.get_articles %}
-                                <li class="category-li">
-                                    <p>
-                                        <span class="category-date">{{ article.create_time|date:'Y-m-d' }} </span>
-                                        <span><a href="/">{{ article.title }}</a></span>
-                                    </p>
-                                </li>
-                            {% endfor %}
-                        </ul>
-                        <hr class="category-hr">
-                    </div>
-                </div>
-            {% endfor %}
+            <ul>
+                {% for article in category.get_articles %}
+                    <li class="category-li">
+                        <p>
+                            <span class="category-date">{{ article.create_time|date:'Y-m-d' }} </span>
+                            <span><a href="{% url 'article' article.title %}">{{ article.title }}</a></span>
+                        </p>
+                    </li>
+                {% endfor %}
+            </ul>
         </div>
     </div>
 {% endblock %}

@@ -28,8 +28,16 @@ class IndexView(View):
 class CategoryView(View):
     def get(self, request):
         categories = Category.objects.all()
-        return render(request, 'category.html', {
+        return render(request, 'categories.html', {
             'categories': categories,
+        })
+
+
+class CategoryNameView(View):
+    def get(self, request, category_name):
+        category = Category.objects.get(name=category_name)
+        return render(request, 'category.html', {
+            'category': category,
         })
 
 
@@ -79,3 +87,18 @@ class SearchView(View):
                 return render(request, 'search.html', {
                     'msg': '这就触及到我的知识盲区啦！',
                 })
+
+
+class ArticleView(View):
+    def get(self, request, article_title):
+        article = Article.objects.get(title=article_title)
+        article.content = markdown.markdown(article.content,
+                                        extensions=[
+                                            'markdown.extensions.extra',
+                                            'markdown.extensions.codehilite',
+                                            'markdown.extensions.toc',
+                                            'markdown.extensions.tables',
+                                        ])
+        return render(request, 'article.html', {
+            'article': article,
+        })
