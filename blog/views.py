@@ -102,3 +102,27 @@ class ArticleView(View):
         return render(request, 'article.html', {
             'article': article,
         })
+
+
+def page_not_found(request):
+    """
+    404
+    :param request:
+    :return:
+    """
+    from django.shortcuts import render_to_response
+    response = render_to_response('404.html', {})
+    response.status_code = 404
+    return response
+
+
+def server_error(request):
+    """
+    500
+    :param request:
+    :return:
+    """
+    from django.shortcuts import render_to_response
+    response = render_to_response('500.html', {})
+    response.status_code = 500
+    return response

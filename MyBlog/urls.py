@@ -13,8 +13,8 @@ Including another URLconf
     1. Import the include() function: from django.conf.urls import url, include
     2. Add a URL to urlpatterns:  url(r'^blog/', include('blog.urls'))
 """
-from django.conf.urls import url, include
-from django.contrib import admin
+from django.conf.urls import url
+
 import xadmin
 
 from blog.views import IndexView, CategoryView, CategoryNameView, ArchivesView, AboutView, SearchView, ArticleView
@@ -33,3 +33,7 @@ urlpatterns = [
     url(r'^article/(?P<article_title>.*)/$', ArticleView.as_view(), name='article'),
     url(r'^feed/$', AllArticleRssFeed(), name='feed'),
 ]
+
+# 404 500页面
+handler404 = 'blog.views.page_not_found'
+handler500 = 'blog.views.server_error'

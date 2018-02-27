@@ -205,3 +205,10 @@ hr {
     color: black;
 }
 /* end */
+
+/* img */
+.panel-body img {
+    max-height: 100%;
+    max-width: 100%;
+}
+/* end img */

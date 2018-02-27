@@ -26,13 +26,18 @@ sys.path.insert(0, os.path.join(BASE_DIR, 'extra_apps'))
 SECRET_KEY = 'nm7dfa6n*^rk-w^l39oad=8epi!qlxj+h0=gk_=d!o#j#td5t3'
 
 # SECURITY WARNING: don't run with debug turned on in production!
+
 DEBUG = True
+<<<<<<< HEAD
 
 ALLOWED_HOSTS = []
-# ALLOWED_HOSTS = ['.chanrubao.xin']
+<<<<<<< HEAD
+=======
+=======
+>>>>>>> 3238a267b38cd730f8f018974da0a8e0c6adb024
 
-# STATIC_ROOT = '/home/chenrubao/sites/mxonline/static'
-
+ALLOWED_HOSTS = []
+>>>>>>> 85b13d56c5fe9fc4642f521a4cbe7033defecb33
 
 # Application definition
 
