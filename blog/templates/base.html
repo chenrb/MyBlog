@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-{% load staticfiles %}
+{% load static %}
 {% load blog_tags %}
 <html lang="en">
 <head>
@@ -40,16 +40,16 @@
             <div class="container">
                 <div class="navbar-collapse collapse in" aria-expanded="true">
                     <ul class="nav navbar-nav">
-                        <li {% ifequal request.path '/' %}class="active"{% endifequal %}>
+                        <li {% if request.path == '/' %}class="active"{% endif %}>
                             <a href="{% url 'index' %}">首页</a>
                         </li>
-                        <li {% ifequal request.path|slice:'9' '/category' %}class="active"{% endifequal %}>
+                        <li {% if request.path|slice:'9' == '/category' %}class="active"{% endif %}>
                             <a href="{% url 'category' %}">分类</a>
                         </li>
-                        <li {% ifequal request.path|slice:'9' '/archives' %}class="active"{% endifequal %}>
+                        <li {% if request.path|slice:'9' == '/archives' %}class="active"{% endif %}>
                             <a href="{% url 'archives' %}">归档</a>
                         </li>
-                        <li {% ifequal request.path|slice:'6' '/about' %}class="active"{% endifequal %}>
+                        <li {% if request.path|slice:'6' == '/about' %}class="active"{% endif %}>
                             <a href="{% url 'about' %}">关于</a>
                         </li>
                     </ul>
@@ -81,7 +81,7 @@
                             <ul style="padding-left: 10px">
                                 {% for article in rand_articles %}
                                     <li>
-                                        <a href="{% url 'article' article.title %}">{{ article.title }}</a>
+                                        <a href="{% url 'article' article.id %}">{{ article.title }}</a>
                                     </li>
                                 {% endfor %}
                             </ul>
@@ -99,14 +99,6 @@
     </div>
 </div>
 <footer class="blog-footer">
-    <p>© 2018 Pluto <a href="http://www.miitbeian.gov.cn" target="_blank">粤ICP备18018330号</a></p>
-    <p>
-        Hosted on
-        <a href="https://promotion.aliyun.com/ntms/act/ambassador/sharetouser.html?userCode=0kgvco2c&utm_source=0kgvco2c"
-           target="_blank">aliyun.</a>
-        Social Icons by
-        <a href="https://fontawesome.com/" target="_blank">Font-Awesome</a>
-    </p>
 </footer>
 </body>
 </html>

@@ -1,5 +1,5 @@
 {% extends 'base.html' %}
-{% load staticfiles %}
+{% load static %}
 {% load blog_tags %}
 {% block title %}
     搜索结果|Pluto's Blog
@@ -15,34 +15,34 @@
     {% for article in articles.object_list %}
         <div class="panel panel-default left">
             <div class="panel-body">
-                <h2 class="post-title"><a href="/">{{ article.title }}</a></h2>
+                <h2 class="post-title"><a href="{% url 'article' article.id %}">{{ article.title }}</a></h2>
                 <p class="post-date">
                     <span><i class="far fa-clock">：</i>{{ article.create_time|date:'Y-m-d H:i' }}</span>
                     <span><i class="fa fa-th-large">：</i><a href="/category/Python">{{ article.category }}</a></span>
                 </p>
                 <section class="article-content">
-                    {{ article.content|slice:'200' }}<a href="">——继续阅读</a>
+                    {{ article.content|slice:'200' }}<a href="{% url 'article' article.id %}">——继续阅读</a>
                 </section>
             </div>
         </div>
     {% endfor %}
     <ul class="pagination">
         {% if articles.has_previous %}
-            <li class="long"><a href="?{{ articles.previous_page_number.querystring }}"><<</a></li>
+            <li class="long"><a href="?page={{ articles.previous_page_number }}"><<</a></li>
         {% endif %}
-        {% for page in articles.pages %}
+        {% for page in articles.paginator.page_range %}
             {% if page %}
-                {% ifequal page articles.number %}
-                    <li class="active"><a href="?{{ page.querystring }}">{{ page }}</a></li>
+                {% if page == articles.number %}
+                    <li class="active"><a href="?page={{ articles.number }}">{{ page }}</a></li>
                 {% else %}
-                    <li><a href="?{{ page.querystring }}" class="page">{{ page }}</a></li>
-                {% endifequal %}
+                    <li><a href="?page={{ page }}" class="page">{{ page }}</a></li>
+                {% endif %}
             {% else %}
                 <li class="none"><a href="">...</a></li>
             {% endif %}
         {% endfor %}
         {% if articles.has_next %}
-            <li class="long"><a href="?{{ articles.next_page_number.querystring }}">>></a></li>
+            <li class="long"><a href="?page={{ articles.next_page_number }}">>></a></li>
         {% endif %}
     </ul>
     {% endif %}

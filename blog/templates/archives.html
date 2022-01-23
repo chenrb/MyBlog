@@ -1,5 +1,5 @@
 {% extends 'base.html' %}
-{% load staticfiles %}
+{% load static %}
 {% load blog_tags %}
 {% block title %}
     归档|Pluto's Blog
@@ -21,7 +21,7 @@
                                 <li class="archive-li">
                                     <p>
                                         <span class="archive-date">{{ article.create_time|date:'Y-m-d' }} </span>
-                                        <span><a href="{% url 'article' article.title %}">{{ article.title }}</a></span>
+                                        <span><a href="{% url 'article' article.id %}">{{ article.title }}</a></span>
                                     </p>
                                 </li>
                             {% endfor %}

@@ -13,23 +13,48 @@ Including another URLconf
     1. Import the include() function: from django.urls import include, path
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
+from django.conf import settings
+from django.conf.urls.static import static
 from django.contrib import admin
+from django.shortcuts import render
 from django.urls import path
-# from blog.views import IndexView, CategoryView, CategoryNameView, ArchivesView, AboutView, SearchView, ArticleView
+
+from blog.views import IndexView, CategoryView, CategoryNameView, ArchivesView, AboutView, SearchView, ArticleView
 from blog.feeds import AllArticleRssFeed
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    # path('', IndexView.as_view(), name='index'),
-    # path(r'^category/$', CategoryView.as_view(), name='category'),
-    # path(r'^category/(?P<category_name>.*)/$', CategoryNameView.as_view(), name='category_name'),
-    # path(r'^archives/$', ArchivesView.as_view(), name='archives'),
-    # path(r'^about/$', AboutView.as_view(), name='about'),
-    # path(r'^search/$', SearchView.as_view(), name='search'),
-    # path(r'^article/(?P<article_title>.*)/$', ArticleView.as_view(), name='article'),
-    path(r'feed', AllArticleRssFeed(), name='feed'),
+    path('', IndexView.as_view(), name='index'),
+    path('category', CategoryView.as_view(), name='category'),
+    path('category/(?P<category_name>.*)', CategoryNameView.as_view(), name='category_name'),
+    path('archives', ArchivesView.as_view(), name='archives'),
+    path('about', AboutView.as_view(), name='about'),
+    path('search', SearchView.as_view(), name='search'),
+    path('article/<int:id>/', ArticleView.as_view(), name='article'),
+    path('feed', AllArticleRssFeed(), name='feed'),
 ]
+if settings.DEBUG:
+    urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
+
+
+def page_not_found(request, exception):
+    """
+    404
+    :param request:
+    :return:
+    """
+    return render(request, '../templates/404.html', {}, status=404)
+
+
+def server_error(request):
+    """
+    500
+    :param request:
+    :return:
+    """
+    return render(request, '../templates/500.html', {}, status=500)
+
 
 # 404 500页面
-handler404 = 'blog.views.page_not_found'
-handler500 = 'blog.views.server_error'
+handler404 = page_not_found
+handler500 = server_error

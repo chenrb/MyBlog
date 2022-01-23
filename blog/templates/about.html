@@ -1,5 +1,5 @@
 {% extends 'base.html' %}
-{% load staticfiles %}
+{% load static %}
 {% load blog_tags %}
 {% block title %}
     关于|Pluto's Blog
@@ -7,7 +7,7 @@
 {% block content_left %}
     <div class="panel panel-default left">
         <div class="panel-body">
-            {{ about.about|safe }}
+            {{ about|safe }}
         </div>
     </div>
 {% endblock %}
