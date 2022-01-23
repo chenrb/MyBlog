@@ -15,19 +15,19 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-from blog.views import IndexView, CategoryView, CategoryNameView, ArchivesView, AboutView, SearchView, ArticleView
+# from blog.views import IndexView, CategoryView, CategoryNameView, ArchivesView, AboutView, SearchView, ArticleView
 from blog.feeds import AllArticleRssFeed
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', IndexView.as_view(), name='index'),
-    path(r'^category/$', CategoryView.as_view(), name='category'),
-    path(r'^category/(?P<category_name>.*)/$', CategoryNameView.as_view(), name='category_name'),
-    path(r'^archives/$', ArchivesView.as_view(), name='archives'),
-    path(r'^about/$', AboutView.as_view(), name='about'),
-    path(r'^search/$', SearchView.as_view(), name='search'),
-    path(r'^article/(?P<article_title>.*)/$', ArticleView.as_view(), name='article'),
-    path(r'^feed/$', AllArticleRssFeed(), name='feed'),
+    # path('', IndexView.as_view(), name='index'),
+    # path(r'^category/$', CategoryView.as_view(), name='category'),
+    # path(r'^category/(?P<category_name>.*)/$', CategoryNameView.as_view(), name='category_name'),
+    # path(r'^archives/$', ArchivesView.as_view(), name='archives'),
+    # path(r'^about/$', AboutView.as_view(), name='about'),
+    # path(r'^search/$', SearchView.as_view(), name='search'),
+    # path(r'^article/(?P<article_title>.*)/$', ArticleView.as_view(), name='article'),
+    path(r'feed', AllArticleRssFeed(), name='feed'),
 ]
 
 # 404 500页面

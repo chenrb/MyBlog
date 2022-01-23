@@ -30,7 +30,7 @@ class Article(models.Model):
     """
     title = models.CharField(max_length=50, verbose_name='标题')
     content = models.TextField(verbose_name='正文')
-    category = models.ForeignKey('Category', verbose_name='分类')
+    category = models.ManyToManyField('Category', verbose_name='分类')
     click_nums = models.IntegerField(default=0, verbose_name='点击量')
     create_time = models.DateTimeField(default=datetime.now, verbose_name='创建时间')
 
